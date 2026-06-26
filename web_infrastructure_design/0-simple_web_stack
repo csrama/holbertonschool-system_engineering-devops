@@ -1,79 +1,60 @@
-User
-  |
-  | HTTP/HTTPS request
-  v
-www.foobar.com
-  |
-  | DNS A record -> 8.8.8.8
-  v
-+----------------------------------+
-|            Server                |
-|          IP: 8.8.8.8             |
-|                                  |
-|  +---------+                     |
-|  | Nginx   |  (Web Server)       |
-|  +---------+                     |
-|         |                        |
-|         v                        |
-|  +---------+                     |
-|  | App     |  (Application       |
-|  | Server  |   Server)           |
-|  +---------+                     |
-|         |                        |
-|         v                        |
-|  +---------+                     |
-|  | App     |  (Application Code) |
-|  | Files   |                     |
-|  +---------+                     |
-|         |                        |
-|         v                        |
-|  +---------+                     |
-|  | MySQL   |  (Database)         |
-|  +---------+                     |
-+----------------------------------+
-Explanation
-What is a server?
+                 User
+                   |
+             HTTPS/HTTP Request
+                   |
+             www.foobar.com
+                   |
+             DNS (A Record)
+                   |
+                8.8.8.8
+                   |
+        +----------------------+
+        |      Server          |
+        |----------------------|
+        | Nginx (Web Server)   |
+        | Application Server   |
+        | Application Files    |
+        | MySQL Database       |
+        +----------------------+
 
-A server is a computer that provides services, resources, or data to other computers over a network.
 
-What is the role of the domain name?
+## What is a server?
 
-The domain name foobar.com provides a human-readable address that users can type into a browser instead of remembering an IP address.
+A server is a computer that provides services and resources to clients over a network.
 
-What type of DNS record is www in www.foobar.com?
+Role of the domain name
 
-www is typically an A record, which maps a hostname to an IPv4 address (8.8.8.8).
+It translates a human-readable name (www.foobar.com) into an IP address.
 
-What is the role of the web server (Nginx)?
+What DNS record is www?
 
-The web server receives HTTP/HTTPS requests from clients and serves static content or forwards requests to the application server.
+A Record
 
-What is the role of the application server?
+because it points to IPv4 address 8.8.8.8
 
-The application server executes the application logic and generates dynamic content.
+Role of Nginx
 
-What is the role of the database (MySQL)?
+Receives HTTP requests.
 
-The database stores and retrieves application data such as users, posts, products, and settings.
+Serves static files.
 
-What is the server using to communicate with the user's computer?
+Forwards dynamic requests to the application server.
 
-The server communicates with the client using the TCP/IP protocol suite, typically through HTTP or HTTPS.
+Role of Application Server
 
-Issues with this Infrastructure
-1. SPOF (Single Point of Failure)
+Runs the application code and processes user requests.
 
-The entire website depends on one server. If that server fails, the website becomes unavailable.
+Role of Database
 
-2. Downtime during maintenance
+Stores and retrieves application data.
 
-Deploying new code, restarting services, or performing updates may temporarily take the website offline.
+Communication
 
-3. Cannot scale
+Uses
 
-A single server has limited CPU, memory, disk, and network resources. High traffic can overwhelm it, causing slow responses or outages.
+HTTP/HTTPS over TCP/IP
 
-Acronyms
-LAMP: Linux, Apache, MySQL, PHP (or Perl/Python)
-SPOF: Single Point Of Failure
-QPS: Queries Per Second
+Problems
+Single Point of Failure (one server)
+Downtime during deployment
+Cannot scale
